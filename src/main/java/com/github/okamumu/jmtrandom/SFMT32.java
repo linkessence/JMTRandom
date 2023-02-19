@@ -268,8 +268,7 @@ public final class SFMT32 extends MTRand32 {
 
 	/**
 	 * The method to generate a random 64bit integer.
-	 * @return A long integer
-	 * @deprecated This is used for a test.
+	 * @return A long integer.
 	 */
 	public long genRand64() {
 		if (idx >= params.SFMT_N32) {

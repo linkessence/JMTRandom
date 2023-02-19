@@ -9,8 +9,10 @@
 plugins {
     id 'java-library'
     id 'jacoco'
-    id 'maven'
 }
+
+group 'com.github.okamumu'
+version = "0.1.0"
 
 dependencies {
     testImplementation 'junit:junit:4.12'
@@ -30,8 +32,6 @@ compileJava {
   options.encoding = defaultEncoding
 }
 
-version = "0.1.0"
-
 // build docs director
 task copyDocs(type: Copy, dependsOn:[javadoc]) {
     from 'build/docs/javadoc'
@@ -42,16 +42,4 @@ task copyDocs(type: Copy, dependsOn:[javadoc]) {
 
 def repo = new File(rootDir, "docs/repository")
 
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      repository url: "file://${repo.absolutePath}"
-      pom.version = "${version}"
-      pom.groupId = 'com.github.okamumu'
-      pom.artifactId = 'jmtrandom'
-    }
-  }
-}
-uploadArchives.dependsOn copyDocs
-
-task docs (dependsOn: uploadArchives)
+task docs (dependsOn: copyDocs)
